@@ -1,0 +1,31 @@
+<br><br>
+<div class="container">
+<div class="row">
+  <div class="col-6">
+<h1>New Tv Show</h1>
+<br>
+<h3>Ingrese un nuevo Tv Show</h3>
+
+<%= form_with model: TvShow.new do |form| %>
+  <div class="form-check">
+    <%= form.label :name, "Name" %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="form-check">
+    <%= form.label :summary, "Summary" %>
+    <%= form.text_area :sumary, class: 'form-control'%>
+  </div>
+  <div class="form-check">
+    <%= form.label :release_date, "Release Date" %>
+    <%= form.date_field :release_date, class: 'form-control' %>
+      </div>
+  <div class="form-check">
+    <%= form.label :rating, "Rating" %>
+    <%= form.number_field :rating, step: '0.1', class: 'form-control'%>
+  </div>
+    <br>
+    <%= form.submit  "Create Tv Show", class: "btn btn-info mt-3" %>
+<% end %>
+<br>
+
+<%= link_to 'Back', tv_shows_path %>
