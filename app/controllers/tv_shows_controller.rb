@@ -13,6 +13,7 @@ class TvShowsController < ApplicationController
   # GET /tv_shows/new
   def new
     @tv_show = TvShow.new
+    2.times { @tv_show.film_locations.build }
   end
 
   # GET /tv_shows/1/edit
@@ -22,6 +23,7 @@ class TvShowsController < ApplicationController
   # POST /tv_shows or /tv_shows.json
   def create
     @tv_show = TvShow.new(tv_show_params)
+    @tv_show.nationality = Nationality.last || Nationality.find(params[:tv_show][:nationality_id])
 
     respond_to do |format|
       if @tv_show.save
@@ -65,6 +67,13 @@ class TvShowsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tv_show_params
-      params.require(:tv_show).permit(:name, :summary, :release_date, :rating)
+        params.require(:tv_show).permit(
+          :name,
+          :summary,
+          :release_date,
+          :rating,
+          :nationality_id,
+          film_locations_attributes: [:id, :name, :indoor]
+          )
     end
 end

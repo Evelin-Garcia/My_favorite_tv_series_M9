@@ -12,6 +12,7 @@
       <th>Summary</th>
       <th>Release date</th>
       <th>Rating</th>
+      <th>Nationality</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
         <td><%= tv_show.summary %></td>
         <td><%= tv_show.release_date %></td>
         <td><%= tv_show.rating %></td>
+        <td><%= image_tag(url_for(tv_show.nationality.flag_img))  %></td>
         <td><%= link_to 'Show', tv_show, class: 'btn btn-outline-success' %></td>
         <td><%= link_to 'Edit', edit_tv_show_path(tv_show), class: 'btn btn-outline-warning' %></td>
         <td><%= link_to 'Destroy', tv_show, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %></td>
@@ -34,6 +36,6 @@
 <br>
 
 <%= link_to 'New Tv Show', new_tv_show_path, class: 'btn btn-info' %>
-</div>
-</div>
+    </div>
+  </div>
 </div>

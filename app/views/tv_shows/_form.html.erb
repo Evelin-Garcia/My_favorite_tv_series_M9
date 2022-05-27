@@ -31,6 +31,26 @@
     <%= form.text_field :rating %>
   </div>
 
+  <div class="field">
+      <%= form.collection_select(:nationality_id, Nationality.all, :id, :name, prompt: true) %>
+  </div>
+
+  <fieldset style="width:270px">
+    <legend>Film locations</legend>
+
+    <ul class="field">
+      <%= form.fields_for :film_locations do |film_locations_form| %>
+        <li>
+          <%= film_locations_form.label :name %>
+          <%= film_locations_form.text_field :name %>
+
+          <%= film_locations_form.label :indoor %>
+          <%= film_locations_form.check_box :indoor %>
+        </li>
+      <% end %>
+    </ul>
+  </fieldset>
+<br>
   <div class="actions">
     <%= form.submit %>
   </div>
