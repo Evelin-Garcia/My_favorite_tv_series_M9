@@ -1,4 +1,5 @@
 class TvShowsController < ApplicationController
+  before_action :authenticate_user!, except: %i[index]
   before_action :set_tv_show, only: %i[ show edit update destroy ]
 
   # GET /tv_shows or /tv_shows.json
@@ -22,7 +23,8 @@ class TvShowsController < ApplicationController
 
   # POST /tv_shows or /tv_shows.json
   def create
-    @tv_show = TvShow.new(tv_show_params)
+    @tv_show = current_user.tv_shows.build(tv_show_params)
+    
     @tv_show.nationality = Nationality.find(params[:tv_show][:nationality_id]) || Nationality.last
 
     respond_to do |format|

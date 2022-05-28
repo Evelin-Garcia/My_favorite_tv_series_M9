@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_28_003843) do
+ActiveRecord::Schema.define(version: 2022_05_28_140240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2022_05_28_003843) do
 
   create_table "film_locations", force: :cascade do |t|
     t.string "name"
-    t.boolean "indoor", default: false
+    t.boolean "indoor"
     t.bigint "tv_show_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -50,7 +50,9 @@ ActiveRecord::Schema.define(version: 2022_05_28_003843) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "nationality_id", null: false
+    t.bigint "user_id", null: false
     t.index ["nationality_id"], name: "index_tv_shows_on_nationality_id"
+    t.index ["user_id"], name: "index_tv_shows_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,4 +70,5 @@ ActiveRecord::Schema.define(version: 2022_05_28_003843) do
   add_foreign_key "episodes", "tv_shows"
   add_foreign_key "film_locations", "tv_shows"
   add_foreign_key "tv_shows", "nationalities"
+  add_foreign_key "tv_shows", "users"
 end

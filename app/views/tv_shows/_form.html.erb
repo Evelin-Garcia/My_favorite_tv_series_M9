@@ -11,32 +11,37 @@
     </div>
   <% end %>
 
-  <div class="field">
+<div class="form-check">
     <%= form.label :name %>
     <%= form.text_field :name %>
-  </div>
+</div>
 
-  <div class="field">
+<div class="form-check">
     <%= form.label :summary %>
     <%= form.text_area :summary %>
-  </div>
+ </div>
 
-  <div class="field">
+
+<div class="form-check">
     <%= form.label :release_date %>
-    <%= form.datetime_select :release_date %>
-  </div>
+    <%= form.date_field :release_date %>
+</div>
 
-  <div class="field">
+
+<div class="form-check">
     <%= form.label :rating %>
     <%= form.text_field :rating %>
-  </div>
+</div>
+<br>
 
-  <div class="field">
-      <%= form.collection_select(:nationality_id, Nationality.all, :id, :name, prompt: true) %>
-  </div>
+<div class="form-check">
+    <%= form.label :nationality %>
+    <%= form.collection_select(:nationality_id, Nationality.all, :id, :name, prompt: true) %>
+</div>
+<br><br>
 
   <fieldset style="width:270px">
-    <legend>Film locations</legend>
+    <legend>Film Locations</legend>
 
     <ul class="field">
       <%= form.fields_for :film_locations do |film_locations_form| %>
@@ -52,6 +57,6 @@
   </fieldset>
 <br>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Create Tv Show", class: 'btn btn-info mt-3'%>
   </div>
 <% end %>

@@ -18,16 +18,22 @@
   </thead>
 
   <tbody>
+
     <% @tv_shows.each do |tv_show| %>
+
       <tr>
         <td><%= tv_show.name %></td>
         <td><%= tv_show.summary %></td>
         <td><%= tv_show.release_date %></td>
         <td><%= tv_show.rating %></td>
         <td><%= image_tag(url_for(tv_show.nationality.flag_img))  %></td>
-        <td><%= link_to 'Show', tv_show, class: 'btn btn-outline-success' %></td>
-        <td><%= link_to 'Edit', edit_tv_show_path(tv_show), class: 'btn btn-outline-warning' %></td>
-        <td><%= link_to 'Destroy', tv_show, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger' %></td>
+        <% if user_signed_in? %>
+            <td><%= link_to 'Show', tv_show, class: 'btn btn-outline-success' %></td>
+        <% end %>
+        <% if (user_signed_in? && (current_user == tv_show.user)) %>
+            <td><%= link_to 'Edit', edit_tv_show_path(tv_show), class: 'btn btn-outline-warning' %></td>
+            <td><%= link_to 'Destroy', tv_show, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'%></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -35,7 +41,10 @@
 </div>
 <br>
 
-<%= link_to 'New Tv Show', new_tv_show_path, class: 'btn btn-info' %>
+<% if user_signed_in? %>
+  <%= link_to 'New Tv Show', new_tv_show_path, class: 'btn btn-info' %>
+<% end %>
+
 <br>
     </div>
   </div>
