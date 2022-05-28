@@ -23,7 +23,7 @@ class TvShowsController < ApplicationController
   # POST /tv_shows or /tv_shows.json
   def create
     @tv_show = TvShow.new(tv_show_params)
-    @tv_show.nationality = Nationality.last || Nationality.find(params[:tv_show][:nationality_id])
+    @tv_show.nationality = Nationality.find(params[:tv_show][:nationality_id]) || Nationality.last
 
     respond_to do |format|
       if @tv_show.save
