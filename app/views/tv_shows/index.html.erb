@@ -8,11 +8,11 @@
 <table class="table table-striped table-sm">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Summary</th>
-      <th>Release date</th>
+      <th>Nombre</th>
+      <th>Resumen</th>
+      <th>Fecha realización</th>
       <th>Rating</th>
-      <th>Nationality</th>
+      <th>Nacionalidad</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -29,11 +29,11 @@
         <td><%= image_tag(url_for(tv_show.nationality.flag_img))  %></td>
 
         <% if user_signed_in? %>
-            <td><%= link_to 'Show', tv_show, class: 'btn btn-outline-success' %></td>
+            <td><%= link_to 'Ver', tv_show, class: 'btn btn-outline-success' %></td>
         <% end %>
         <% if (user_signed_in? && (current_user == tv_show.user)) %>
-            <td><%= link_to 'Edit', edit_tv_show_path(tv_show), class: 'btn btn-outline-warning' %></td>
-            <td><%= link_to 'Destroy', tv_show, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'%></td>
+            <td><%= link_to 'Editar', edit_tv_show_path(tv_show), class: 'btn btn-outline-warning' %></td>
+            <td><%= link_to 'Eliminar', tv_show, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'%></td>
         <% end %>
       </tr>
     <% end %>
@@ -43,7 +43,7 @@
 <br>
 
 <% if user_signed_in? %>
-  <%= link_to 'New Tv Show', new_tv_show_path, class: 'btn btn-info' %>
+  <%= link_to 'Nuevo Tv Show', new_tv_show_path, class: 'btn btn-info' %>
 <% end %>
 
 <br>

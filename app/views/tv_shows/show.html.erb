@@ -4,17 +4,17 @@
     <div class="col-6">
   <h1>DETALLE TV SHOW</h1>
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @tv_show.name %>
 </p>
 
 <p>
-  <strong>Summary:</strong>
+  <strong>Resumen:</strong>
   <%= @tv_show.summary %>
 </p>
 
 <p>
-  <strong>Release date:</strong>
+  <strong>Fecha realización:</strong>
   <%= @tv_show.release_date %>
 </p>
 
@@ -24,11 +24,11 @@
 </p>
 
 <p>
-  <strong>Nationality:</strong>
+  <strong>Nacionalidad:</strong>
   <%= image_tag(url_for(@tv_show.nationality.flag_img)) %>
 </p>
 
-<p><strong>Film locations:</strong></p>
+<p><strong>Locaciones:</strong></p>
 <ul>
     <% if @tv_show.film_locations %>
         <% @tv_show.film_locations.each do |film_location|%>
@@ -44,17 +44,17 @@
 <h3>LISTADO DE EPISODIOS</h3>
 <% @tv_show.episodes.each do |episode| %>
     <p>
-        <strong>Episode number:</strong>
+        <strong>Episodio número:</strong>
         <%= episode.episode_number %>
     </p>
 
     <p>
-        <strong>Title:</strong>
+        <strong>Título:</strong>
         <%= episode.title %>
     </p>
 
     <p>
-        <strong>Summary:</strong>
+        <strong>Resumen:</strong>
         <%= episode.summary %>
     </p>
     <hr>
@@ -64,23 +64,23 @@
 <h2>Agregue un episodio:</h2>
 <%= form_with model: [ @tv_show, @tv_show.episodes.build ] do |form| %>
     <p>
-        <%= form.label :episode_number %><br>
+        <%= form.label :episodio_numero %><br>
         <%= form.number_field :episode_number %>
     </p>
     <p>
-        <%= form.label :title %><br>
+        <%= form.label :título %><br>
         <%= form.text_field :title %>
     </p>
     <p>
-        <%= form.label :summary %><br>
+        <%= form.label :resumen %><br>
         <%= form.text_area :summary %>
     </p>
     <p>
         <%= form.submit "Crear episodio", class: 'btn btn-info'%>
     </p>
 <% end %>
-<%= link_to 'Edit', edit_tv_show_path(@tv_show) %> |
-<%= link_to 'Back', tv_shows_path %>
+<%= link_to 'Editar', edit_tv_show_path(@tv_show) %> |
+<%= link_to 'Volver', tv_shows_path %>
     </div>
   </div>
 </div>
