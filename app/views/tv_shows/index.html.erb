@@ -34,6 +34,8 @@
         <% if (user_signed_in? && (current_user == tv_show.user)) %>
             <td><%= link_to 'Editar', edit_tv_show_path(tv_show), class: 'btn btn-outline-warning' %></td>
             <td><%= link_to 'Eliminar', tv_show, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'%></td>
+        <% elsif user_signed_in? && current_user.admin? %>
+            <td><%= link_to 'Eliminar', tv_show, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-outline-danger'%></td>
         <% end %>
       </tr>
     <% end %>
