@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_01_002503) do
+ActiveRecord::Schema.define(version: 2022_06_02_000158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "actors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "age"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "actors_tv_shows", id: false, force: :cascade do |t|
+    t.bigint "actor_id"
+    t.bigint "tv_show_id"
+    t.index ["actor_id"], name: "index_actors_tv_shows_on_actor_id"
+    t.index ["tv_show_id"], name: "index_actors_tv_shows_on_tv_show_id"
+  end
 
   create_table "episodes", force: :cascade do |t|
     t.integer "episode_number"
