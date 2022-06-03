@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_02_000158) do
+ActiveRecord::Schema.define(version: 2022_06_02_220441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,22 @@ ActiveRecord::Schema.define(version: 2022_06_02_000158) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tv_show_id"], name: "index_film_locations_on_tv_show_id"
+  end
+
+  create_table "genre_tv_shows", force: :cascade do |t|
+    t.bigint "genre_id", null: false
+    t.bigint "tv_show_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["genre_id"], name: "index_genre_tv_shows_on_genre_id"
+    t.index ["tv_show_id"], name: "index_genre_tv_shows_on_tv_show_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "nationalities", force: :cascade do |t|
@@ -86,6 +102,8 @@ ActiveRecord::Schema.define(version: 2022_06_02_000158) do
 
   add_foreign_key "episodes", "tv_shows"
   add_foreign_key "film_locations", "tv_shows"
+  add_foreign_key "genre_tv_shows", "genres"
+  add_foreign_key "genre_tv_shows", "tv_shows"
   add_foreign_key "tv_shows", "nationalities"
   add_foreign_key "tv_shows", "users"
 end

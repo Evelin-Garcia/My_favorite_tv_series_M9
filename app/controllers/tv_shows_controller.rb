@@ -75,7 +75,8 @@ class TvShowsController < ApplicationController
           :release_date,
           :rating,
           :nationality_id,
-          film_locations_attributes: [:id, :name, :indoor]
+          film_locations_attributes: [:id, :name, :indoor],
+          genre_ids: []
           )
     end
-end
+  end

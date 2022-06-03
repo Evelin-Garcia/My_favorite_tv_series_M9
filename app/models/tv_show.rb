@@ -1,4 +1,6 @@
 class TvShow < ApplicationRecord
+  has_many :genre_tv_shows, dependent: :destroy
+  has_many :genres, through: :genre_tv_shows
   belongs_to :nationality
   belongs_to :user
   has_many :episodes, dependent: :destroy

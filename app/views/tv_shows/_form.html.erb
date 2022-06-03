@@ -9,6 +9,9 @@
         <% end %>
       </ul>
     </div>
+
+    
+
   <% end %>
 
 <div class="form-check">
@@ -39,6 +42,11 @@
     <%= form.collection_select(:nationality_id, Nationality.all, :id, :name, prompt: true) %>
 </div>
 <br><br>
+
+<div class="form-check">
+    <%= form.label :genre %>
+    <%= form.collection_select(:genre_ids, Genre.all, :id, :name,{ prompt: true }, { multiple: true }) %>
+</div>
 
   <fieldset style="width:270px">
     <legend>Film Locations</legend>

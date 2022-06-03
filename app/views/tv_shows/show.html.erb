@@ -28,19 +28,17 @@
   <%= image_tag(url_for(@tv_show.nationality.flag_img)) %>
 </p>
 
-<p><strong>Actors:</strong></p>
+<p><strong>Géneros:</strong></p>
 <ul>
-    <% if @tv_show.actors %>
-        <% @tv_show.actors.each do |actor|%>
-            <li><strong><%= actor.id %>: </strong><%= "#{actor.first_name} #{actor.last_name}" %></li>
+    <% if @tv_show.genres %>
+        <% @tv_show.genres.each do |genre|%>
+            <li><strong><%= "#{genre.id}" %>: </strong><%= genre.name %></li>
         <% end %>
     <% else %>
-        <% 'No Actors Added!!!'%>
+        <% 'No Genres Added!!!'%>
     <% end %>
 </ul>
-<br>
-<%= link_to 'Add actors', new_tv_show_actor_path(@tv_show) %>
-<br><br>
+
 <p><strong>Locaciones:</strong></p>
 <ul>
     <% if @tv_show.film_locations %>
@@ -52,8 +50,22 @@
         <% 'No Film Locations Added!!!'%>
     <% end %>
 </ul>
-
+<br>
+<p><strong>Actores:</strong></p>
+<ul>
+    <% if @tv_show.actors %>
+        <% @tv_show.actors.each do |actor|%>
+            <li><strong><%= actor.id %>: </strong><%= "#{actor.first_name} #{actor.last_name}" %></li>
+        <% end %>
+    <% else %>
+        <% 'No Actors Added!!!'%>
+    <% end %>
+</ul>
+<br>
+<%= link_to 'Agregar actores', new_tv_show_actor_path(@tv_show) %>
 <br><br>
+<hr>
+<br>
 <h3>LISTADO DE EPISODIOS</h3>
 <% @tv_show.episodes.each do |episode| %>
     <p>
@@ -72,8 +84,7 @@
     </p>
     <hr>
 <% end %>
-<br><br>
-
+<br>
 <h2>Agregue un episodio:</h2>
 <%= form_with model: [ @tv_show, @tv_show.episodes.build ] do |form| %>
     <p>
