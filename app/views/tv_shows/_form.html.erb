@@ -1,3 +1,9 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+
+
 <%= form_with(model: tv_show) do |form| %>
   <% if tv_show.errors.any? %>
     <div id="error_explanation">
@@ -15,46 +21,47 @@
   <% end %>
 
 <div class="form-check">
-    <%= form.label :name %>
+    <%= form.label :name, "Nombre:" %>
     <%= form.text_field :name %>
 </div>
 
 <div class="form-check">
-    <%= form.label :summary %>
+    <%= form.label :summary, "Resumen:" %>
     <%= form.text_area :summary %>
  </div>
 
 
 <div class="form-check">
-    <%= form.label :release_date %>
+    <%= form.label :release_date, "Fecha realización:" %>
     <%= form.date_field :release_date %>
 </div>
 
 
 <div class="form-check">
-    <%= form.label :rating %>
+    <%= form.label :rating, "Rating:" %>
     <%= form.text_field :rating %>
 </div>
 <br>
 
 <div class="form-check">
-    <%= form.label :nationality %>
+    <%= form.label :nationality, "Nacionalidad:" %>
     <%= form.collection_select(:nationality_id, Nationality.all, :id, :name, prompt: true) %>
 </div>
 <br><br>
 
 <div class="form-check">
-    <%= form.label :genre %>
-    <%= form.collection_select(:genre_ids, Genre.all, :id, :name,{ prompt: true }, { multiple: true }) %>
+    <%= form.label :genre, "Género:" %>
+    
+    <%= form.collection_check_boxes :genre_ids, Genre.all, :id, :name %>
 </div>
-
+<br>
   <fieldset style="width:270px">
     <legend>Film Locations</legend>
 
     <ul class="field">
       <%= form.fields_for :film_locations do |film_locations_form| %>
         <li>
-          <%= film_locations_form.label :name %>
+          <%= film_locations_form.label :name, "Nombre:" %>
           <%= film_locations_form.text_field :name %>
 
           <%= film_locations_form.label :indoor %>
@@ -65,6 +72,9 @@
   </fieldset>
 <br>
   <div class="actions">
-    <%= form.submit "Create Tv Show", class: 'btn btn-info mt-3'%>
+    <%= form.submit "Crear Tv Show", class: 'btn btn-info mt-3'%>
   </div>
 <% end %>
+</div>
+</div>
+</div>

@@ -13,6 +13,6 @@ end
 private
 
   def actor_params
-    params.require(:actor).permit(:first_name, :last_name, :age)
+    params.require(:actor).permit(:first_name, :last_name, :age, :image)
   end
 end
