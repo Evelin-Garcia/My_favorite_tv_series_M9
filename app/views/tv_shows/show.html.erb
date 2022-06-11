@@ -57,7 +57,7 @@
         <% @tv_show.actors.each do |actor|%>
             <li><strong><%= actor.id %>: </strong><%= "#{actor.first_name} #{actor.last_name}" %></li>
             <% if actor.image.attached? %>
-                <li><%= image_tag(actor.image, size: '50x50') %></li>
+                <li><%= cl_image_tag(actor.image.key, size: '50x50') %></li>
             <% end %>
         <% end %>
     <% else %>
